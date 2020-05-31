@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style media="screen">
+
+
+      .table td {
+          text-align: center;
+      }
+      body{
+        text-align:center;
+      }
+
+    </style>
+
+    {%block head%}
+    {%endblock%}
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+
+  <nav class="navbar navbar-expand-lg navbar-light" style=" background-color:yellow;">
+      <a class="navbar-brand" href="{% url 'cart'%}" style="margin-left:50px; background-color:yellow;">
+        <img src="data:image/png;base64,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" width="80" height="80" alt="">
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                  <a class="nav-link" href="{%url 'menu'%}" style="font-size:50px; margin-left:50px;">Menu <span class="sr-only">(menu)</span></a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'orders' %}" style="font-size:50px; margin-left:50px;">Orders <span class="sr-only">(order)</span></a>
+              </li>
+          </ul>
+      </div>
+      <span class="navbar-text" style="font-size:50px; margin-right:50px;">
+          <a href="{%url 'logout'%}">logout</a>
+      </span>
+
+
+  </nav>
+
+  <body>
+
+      {%block body%}
+
+      {% endblock %}
+  </body>
+</html>

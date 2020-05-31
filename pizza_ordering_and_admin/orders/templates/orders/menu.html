@@ -1,0 +1,127 @@
+{% extends "orders/base.html" %}
+
+{%block title%}
+  Menu
+{%endblock%}
+
+{%block body%}
+  <h1>Menu</h1>
+  <br>
+
+
+  <h3>Regular Pizza</h3>
+  <table class="table" width = "100%">
+      <thead>
+          <tr>
+              <th style="text-align:left;" width = "50%"></th>
+              <th width = "25%">Small</th>
+              <th width = "25%">Large</th>
+          </tr>
+      </thead>
+
+      <tbody>
+          {%for data in rp%}
+            <tr>
+                <td style="text-align:center;" width = "50%">{{data.name}}</td>
+                <td width = "25%">{{data.small}}</td>
+                <td width = "25%">{{data.large}}</td>
+            </tr>
+          {%endfor%}
+      </tbody>
+  </table>
+
+  <h3>Sicilian Pizza</h3>
+  <table class="table">
+      <thead>
+          <tr>
+              <th style="text-align:center;" width = "50%"></th>
+              <th width = "25%">Small</th>
+              <th width = "25%">Large</th>
+          </tr>
+      </thead>
+
+      <tbody>
+          {%for data in sp%}
+            <tr>
+                <td style="text-align:center;" width = "50%">{{data.name}}</td>
+                <td width = "25%">{{data.small}}</td>
+                <td width = "25%">{{data.large}}</td>
+            </tr>
+          {%endfor%}
+      </tbody>
+  </table>
+
+  <h3>Toppings</h3>
+  <ul class="list-group" style="text-align:center;">
+      {%for data in t%}
+          <li class="list-group-item">{{data.name}}</li>
+      {%endfor%}
+  </ul>
+
+  <h3>Subs</h3>
+  <table class="table">
+      <thead>
+          <tr>
+              <th style="text-align:center;" width = "50%"></th>
+              <th width = "25%">Small</th>
+              <th width = "25%">Large</th>
+          </tr>
+      </thead>
+
+      <tbody>
+          {%for data in sub%}
+            <tr>
+                <td style="text-align:center;" width = "50%">{{data.name}}</td>
+                <td width = "25%">{{data.small}}</td>
+                <td width = "25%">{{data.large}}</td>
+            </tr>
+          {%endfor%}
+      </tbody>
+  </table>
+
+    <h3>Pasta</h3>
+    <table class="table">
+        <tbody>
+            {%for data in p%}
+              <tr>
+                  <td width = "50%">{{data.name}}</td>
+                  <td width = "50%">{{data.small}}</td>
+              </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+
+  <h3>Salads</h3>
+  <table class="table">
+      <tbody>
+          {%for data in sal%}
+            <tr>
+                <td width = "50%">{{data.name}}</td>
+                <td width = "50%">{{data.small}}</td>
+            </tr>
+          {%endfor%}
+      </tbody>
+  </table>
+
+  <h3>Dinner Platters</h3>
+  <table class="table">
+      <thead>
+          <tr>
+              <th style="text-align:center;" width = "50%"></th>
+              <th width = "25%">Small</th>
+              <th width = "25%">Large</th>
+          </tr>
+      </thead>
+
+      <tbody>
+          {%for data in dp%}
+            <tr>
+                <td style="text-align:center;" width = "50%">{{data.name}}</td>
+                <td width = "25%">{{data.small}}</td>
+                <td width = "25%">{{data.large}}</td>
+            </tr>
+          {%endfor%}
+      </tbody>
+  </table>
+
+{%endblock%}

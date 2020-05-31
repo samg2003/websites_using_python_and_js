@@ -1,0 +1,148 @@
+{% extends "orders/base.html" %}
+
+
+{% block title %}
+Order
+{% endblock%}
+
+{%block head%}
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", ()=>{
+    document.querySelector("#pns-type").onchange = function(){
+        let v = document.querySelector("#pns-type").value;
+        if (v==="Pasta"){
+          document.querySelectorAll("#Pasta").forEach(function(option){
+              option.disabled = false;
+              document.querySelectorAll("#Salads").forEach(function(option){
+                option.disabled = true;
+              });
+          });
+        }
+        else {
+          document.querySelectorAll("#Salads").forEach(function(option){
+              option.disabled = false;
+              document.querySelectorAll("#Pasta").forEach(function(option){
+                option.disabled = true;
+              });
+          });
+        }
+    };
+
+
+
+
+  });
+
+</script>
+{%endblock%}
+
+{% block body%}
+<div class="container mt-3">
+  <h1>Order</h1>
+  {% if message %}
+  <p>{{message}}</p>
+  {% endif %}
+  <br>
+  <br>
+  <div class="d-flex mb-3">
+    <div class="p-3 order-1 bg-info">
+        <h1>Pizzas</h1>
+        <form class="form-group" action = "{%url 'pizza'%}" method="post">
+            {% csrf_token %}
+            <label for="pizza-type">Type</label>
+            <select class="form-control" id="pizza-type" name="pizza-type">
+                <option value = "Regular Pizza">Regular Pizza</option>
+                <option value = "Sicilian Pizza">Sicilian Pizza</option>
+            </select>
+            <label for="pizza-toppings">Select Toppings See Menu for pricing</label>
+            <select multiple class="form-control" id="pizza-toppings" name="pizza-toppings">
+                {%for data in t%}
+                  <option value = "{{data.name}}">{{data.name}}</option>
+                {%endfor%}
+            </select>
+
+            <label for="pizza-size">Type</label>
+            <select class="form-control" id="pizza-size" name="pizza-size">
+                <option value = "small">Small</option>
+                <option value = "large">Large</option>
+            </select>
+            <button type="submit" class="btn btn-primary mb-2">Add</button>
+        </form>
+    </div>
+
+
+    <div class="p-3 order-2 bg-info">
+        <h1>Pasta And Salads</h1>
+        <form class="form-group" action="{% url 'pns' %}" method="post">
+              {% csrf_token %}
+              <label for="pns-type">Type</label>
+              <select class="form-control" id="pns-type" name="pns-type">
+                  <option value = "Pasta">Pasta</option>
+                  <option value = "Salads">Salads</option>
+              </select>
+              <label for="pns-name">Select</label>
+              <select class="form-control" id="pns-name" name="pns-name">
+                  {%for data in p%}
+                    <option id ="Pasta" value = "{{data.name}}" disabled >{{data.name}} ({{data.small}}$)</option>
+                  {%endfor%}
+                  {%for data in sal%}
+                    <option id="Salads" value = "{{data.name}}" disabled >{{data.name}} ({{data.small}}$)</option>
+                  {%endfor%}
+              </select>
+              <button type="submit" class="btn btn-primary mb-2">Add</button>
+        </form>
+    </div>
+
+    <div class="p-3 order-3 bg-info">
+          <h1>Dinner Platters</h1>
+          <form class="form-group" action = "{%url 'dinnerplatter'%}" method="post">
+              {% csrf_token %}
+              <label for="dp-name">Choose</label>
+              <select class="form-control" id="dp-name" name="dp-name">
+                  {%for data in dp%}
+                    <option value = "{{data.name}}">{{data.name}} (small:{{data.small}}$)(large:{{data.large}}$)</option>
+                  {%endfor%}
+              </select>
+              <label for="dp-size">Type</label>
+              <select class="form-control" id="dp-size" name="dp-size">
+                  <option value = "small">Small</option>
+                  <option value = "large">Large</option>
+              </select>
+              <button type="submit" class="btn btn-primary mb-2">Add</button>
+          </form>
+    </div>
+
+    <div class="p-3 order-1 bg-info">
+        <h1>Subs</h1>
+        <form class="form-group" action = "{%url 'subs'%}" method="post">
+            {% csrf_token %}
+            <label for="sub-name">Choose Sub</label>
+            <select class="form-control" id="sub-name" name="sub-name">
+                {%for data in sub%}
+                  <option value = "{{data.name}}">{{data.name}}</option>
+                {%endfor%}
+            </select>
+            <label for="sub-toppings">Select Toppings in case of steak + cheese</label>
+            <select multiple class="form-control" id="sub-toppings" name="sub-toppings">
+                  <option value = "Mushrooms">Mushrooms</option>
+                  <option value = "Green Peppers">Green Peppers</option>
+                  <option value = "Onions">Onions</option>
+            </select>
+            <label for="sub-size">Size</label>
+            <select class="form-control" id="sub-size" name="sub-size">
+                <option value = "small">Small</option>
+                <option value = "large">Large</option>
+            </select>
+            <div class="form-check">
+            <input name = "extracheese" class="form-check-input" type="checkbox" value="Extra Cheese" id="extracheese">
+              <label class="form-check-label" for="extracheese">
+                Extra Cheese @ 0.50$
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Add</button>
+        </form>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "orders/base.html" %}
+
+
+{% block title %}
+Your Order
+{% endblock%}
+
+
+{% block body%}
+  <h1>Order Summary</h1>
+  <br>
+  <ul class="list-group">
+      {%for data in cart%}
+        <li class="list-group-item">{{data}} </li>
+      {%endfor%}
+      <li class = "list-group-item">Total Amount: {{total}}$</li>
+  </ul>
+{% endblock %}

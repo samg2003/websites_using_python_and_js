@@ -1,0 +1,26 @@
+{% extends "users/base.html" %}
+
+{% block title %}
+Sign up
+{% endblock %}
+
+{% block body %}
+<h1>Sign up!</h1>
+
+{%if message%}
+  <div class="">
+      {{message}}
+  </div>
+{%endif%}
+
+<form action="{% url 'signin' %}" method="post" class="form-group">
+    {% csrf_token %}
+    <input class="form-control" name="first_name" type="text" placeholder = "First name"/>
+    <input class="form-control" name="last_name" type="text" placeholder = "Last name"/>
+    <input class="form-control" name="email" type="text" placeholder = "Email Id"/>
+    <input class="form-control" name="username" type="text" placeholder = "Username"/>
+    <input class="form-control" name="password" type="password" placeholder = "Password"/>
+    <input class = "btn btn-primary" type="submit" value="Login"/>
+</form>
+<a href="{% url 'login' %}">Already registered? Login</a>
+{% endblock %}

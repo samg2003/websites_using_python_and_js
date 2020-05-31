@@ -1,0 +1,60 @@
+{%extends "layout.html"%}
+{%block head%}
+
+<header>
+  <div class = "row">
+    <div class = "col-md-6">
+      <a href="/logout">logout</a>
+    </div>
+    <div class = "col-md-6">
+      <a href="/search">search</a>
+    </div>
+  </div>
+</header>
+
+{%endblock%}
+{%block body%}
+      <p>ISBN: <span class="detail">{{row.isbn}}</span></p>
+      <p>Title: <span class="detail">{{row.title}}</span></p>
+      <p>Author: <span class="detail">{{row.author}}</span></p>
+      <p>Year: <span class="detail">{{row.year}}</span></p>
+      <p>Goodreads ratings count: <span class="detail">{{ratingscount}}</span></p>
+      <p>Goodreads average rating: <span class="detail">{{averagerating}}</span></p>
+
+  {%if review == 1%}
+  <div class = "review">
+      <h3> You have not reviewed this book yet!</h3>
+      <form action="/{{row.isbn}}" method = "post">
+          <div class="form-group">
+              <label for="rating">Your Rating</label>
+              <input type="number" min="1" max="5" name="rating" class="form-control" id="rating" aria-describedby="RatingHelp" placeholder="1-5">
+              <small id="RatingHelp" class="form-text text-muted">rate between 1-5(integer), if you type anything else you review will not submit </small>
+          </div>
+
+          <div class="form-group">
+              <label for="review">Your review</label>
+              <input type="text" name="review" class="form-control" id="review" aria-describedby="ReviewHelp" placeholder="Type here">
+              <small id="ReviewHelp" class="form-text text-muted">You are allowed to review once!!!</small>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit Your Review</button>
+      </form>
+  </div>
+
+  {%elif review == 0%}
+  <div class="review">
+    <h3>Your review for this book!</h3>
+    <p>Your Rating: <span class="detail">{{userdata.star}}</span></p>
+    <p>Your Review: <span class="detail">{{userdata.review}}</span></p>
+  </div>
+  {%endif%}
+
+<div class="review">
+  <h2>{{reviewcount}} Public Review(s) for this book</h2>
+    {%for rev in publicdata%}
+        <p>{{rev.name}}'s Review: <span class="detail">{{rev.review}}</span></p>
+    {%endfor%}
+</div>
+
+
+{%endblock%}

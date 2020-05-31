@@ -1,0 +1,158 @@
+{%extends "info/base.html" %}
+
+{% block title %}
+Quiz
+{% endblock %}
+
+{%block js%}
+<style media="screen">
+  p{
+    font-size:24px;
+  }
+  .answer-save{
+    margin-top:10px;
+  }
+  .answer-save:hover{
+    background-color:orange;
+  }
+</style>
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded",() =>{
+    document.querySelectorAll(".answer-save").forEach(function(button){
+      button.onclick = function(){
+        let data = button.dataset.id;
+        let search = "#" + data;
+        let answer = document.querySelector(search).value;
+        localStorage.setItem(data,answer);
+      };
+    });
+
+    document.querySelectorAll(".form-control").forEach(function(select){
+      let search = select.id;
+      if (localStorage.getItem(search)){
+        let answer = localStorage.getItem(search);
+        select.value = answer
+      }
+    });
+
+
+  });
+
+</script>
+{% endblock %}
+
+
+{%block body%}
+<h1 class = "centre">Quiz Time</h1>
+<div style="text-align:center;display:none;" id="result" class="alert alert-success" role="alert" ></div>
+<br>
+<br>
+<form id="answers-form" name="answers-form" class="" action="{%url 'quiz'%}" method="post" >
+  {% csrf_token %}
+    <p>Which is following is not a coronavirus</p>
+
+    <br>
+    <div class="form-group">
+        <label for="answer1">Answer1</label>
+        <select name="answers" class="form-control" id="answer1">
+          <option selected="selected" value="0">Select Answer</option>
+          <option value="1">Swine Flu</option>
+          <option value="2">SARS</option>
+          <option value="3">MERS</option>
+          <option value="4">Adenovirus</option>
+        </select>
+        <button class="answer-save" data-id="answer1" type="button" name="button">Save</button>
+    </div>
+
+    <br>
+    <p>Minimum time you should take for washing your hands?</p>
+    <br>
+    <div class="form-group">
+        <label for="answer2">Answer2</label>
+        <select name="answers" class="form-control" id="answer2">
+          <option selected="selected" value="0">Select Answer</option>
+          <option value="1">10 seconds</option>
+          <option value="2">15 seconds</option>
+          <option value="3">20 seconds</option>
+          <option value="4">30 seconds</option>
+        </select>
+        <button class="answer-save" data-id="answer2" type="button" name="button">Save</button>
+    </div>
+
+    <br>
+    <p>After Which of the following symptom you should consult your doctor regarding COVID-19/2019- Novel coronavirus?</p>
+    <br>
+    <div class="form-group">
+        <label for="answer3">Answer3</label>
+        <select name="answers" class="form-control" id="answer3">
+          <option selected="selected" value="0">Select Answer</option>
+          <option value="1">High Fever</option>
+          <option value="2">Depression</option>
+          <option value="3">White Hairs</option>
+          <option value="4">Dizziness during Night</option>
+        </select>
+        <button class="answer-save" data-id="answer3" type="button" name="button">Save</button>
+    </div>
+
+    <br>
+    <p>Where was the first victim of 2019-Novel Coronavirus found?</p>
+    <br>
+    <div class="form-group">
+        <label for="answer4">Answer4</label>
+        <select name="answers" class="form-control" id="answer4">
+          <option selected="selected" value="0">Select Answer</option>
+          <option value="1">Italy</option>
+          <option value="2">USA</option>
+          <option value="3">China</option>
+          <option value="4">Spain</option>
+        </select>
+        <button class="answer-save" data-id="answer4" type="button" name="button">Save</button>
+    </div>
+
+    <br>
+    <p>Country with most number of confirmed cases of COVID-19</p>
+    <br>
+    <div class="form-group">
+        <label for="answer5">Answer5</label>
+        <select name="answers" class="form-control" id="answer5">
+          <option selected="selected" value="0">Select Answer</option>
+          <option value="1">Italy</option>
+          <option value="2">USA</option>
+          <option value="3">China</option>
+          <option value="4">Spain</option>
+        </select>
+        <button class="answer-save" data-id="answer5" type="button" name="button">Save</button>
+    </div>
+    <br>
+    <br>
+    <div class="centre">
+      <button id="result" class= "btn btn-primary" type="submit" name="button">See Results</button>
+    </div>
+
+</form>
+
+{%if score or score == 0%}
+<script type="text/javascript">
+  let score = {{score}};
+  const content =  `Congrats you got ${score}/5`;
+  document.querySelector("#result").innerHTML = content;
+  document.querySelector("#result").style.display = 'block';
+  function result(foo,search){
+      if (foo==0){
+        document.querySelector(search).style.color="red";
+      }
+      else{
+        document.querySelector(search).style.color="green";
+      }
+  }
+  result({{answer1}},'#answer1');
+  result({{answer2}},'#answer2');
+  result({{answer3}},'#answer3');
+  result({{answer4}},'#answer4');
+  result({{answer5}},'#answer5');
+</script>
+{% endif %}
+
+
+{%endblock%}

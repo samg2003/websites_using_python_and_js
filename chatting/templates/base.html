@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">-->
+
+        <title>ChatRoom</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous"></script>
+
+        <style>
+          #index{
+            margin-top: 30%;
+          }
+          body{
+            color:black;
+            background-color: lightyellow;
+          }
+          a.navbar-brand {
+            font-family: 'Times New Roman';
+          }
+          #headers {
+            height:150px;
+          }
+          #headers a{
+            margin-left: 10%;
+            text-align: center;
+            font-size: 30px;
+          }
+
+          @keyframes grow {
+            from {
+              font-size: 30px;
+            }
+            to{
+              font-size: 40px;
+            }
+          }
+          @keyframes shrink {
+            from {
+              font-size: 40px;
+            }
+            to{
+              font-size: 30px;
+            }
+          }
+          #headers a:hover{
+            color:lightyellow;
+            animation-name: grow;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+          }
+
+          #headers a:not(:hover){
+            animation-name: shrink;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+          }
+          #chatrooms{
+            text-align: center;
+            font-size: 40px;
+          }
+          #chatrooms li{
+            font-size:40px;
+          }
+          #body{
+            text-align:center;
+          }
+          ul{
+            list-style-type: none;
+          }
+      </style>
+
+
+    </head>
+    <body>
+        <nav id="headers" class="navbar navbar-dark bg-info text-white">
+            <a class="navbar-brand" href="{{ url_for('index') }} "> Chatroom </a>
+                    {% block header %}
+
+                    {% endblock %}
+      
+        </nav>
+
+
+        <div id='body' class="container container-fluid">
+
+
+            {% block body %}
+            {% endblock %}
+
+
+        </div>
+
+
+
+    </body>
+</html>

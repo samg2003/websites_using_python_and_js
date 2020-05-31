@@ -1,0 +1,53 @@
+{%extends "info/base.html"%}
+
+{%block title%}
+symptoms
+{%endblock%}
+
+{%block body%}
+<div class = "centre">
+  <h1>Symptoms Of Coronavirus</h1>
+  <br>
+  <p>Below widget can give you an idea about your coronavirus conditions. All are symtoms which are seen in many coronavirus patients as per WHO.</p>
+    <form action="{%url 'symptoms'%}" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+          <big><label for="age">Age</label></big>
+          <input type="number" min='0' class="form-control" id="age" placeholder="Age" name ="age">
+      </div>
+        <div class="form-group">
+           <big><label for="symptoms-list">select all symptoms that apply to you</label></big>
+           <select name = "symptoms-list" style = "height:400px;text-align:center;" multiple class="form-control" id="symptoms-list">
+             <option value ="20">High Fever</option>
+             <option value= "20">Tiredness</option>
+             <option value="20">Difficulty Breathing</option>
+             <option value="35">Dry Cough</option>
+             <option value="5">Aches and Pains</option>
+             <option value="5">Nasal congestion</option>
+             <option value="10">Runny Nose</option>
+             <option value="5">Sore Throat</option>
+             <option value="5">Diarrhea</option>
+             <option value="-4">High Blood Pressure</option>
+             <option value="-4">Heart Problems</option>
+             <option value="-4">Diabetes</option>
+             <option value="-4">Low Immune (recent recovery from cold...)</option>
+           </select>
+         </div>
+        <button class= "btn btn-primary" type="submit">Check Results</button>
+    </form>
+    {% if message1 or message2%}
+      <br>
+      <br>
+      <ul class="list-group">
+      <li class="list-group-item list-group-item-info" id="resultcou">{{message1}}</li>
+      <li class="list-group-item list-group-item-info" id="resultcon">{{message2}}</li>
+      </ul>
+    {% endif%}
+    {% if message3%}
+    <ul class="list-group">
+    <li class="list-group-item list-group-item-info" id="resultcou">{{message3}}</li>
+    </ul>
+    {% endif%}
+</div>
+
+{%endblock%}

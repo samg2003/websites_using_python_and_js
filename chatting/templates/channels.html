@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block header %}
+
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('channelslist') }}">Channels</a>
+        </li>
+    </ul>
+
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a style="color:red;" class="nav-link " href='{{ url_for('logout') }}''>Logout {{ username }}</a>
+        </li>
+    </ul>
+
+{% endblock %}
+
+
+
+{% block body %}
+    <script src="{{ url_for('static', filename='channels.js') }}"></script>
+
+    <form class="form-signin" action="{{ url_for('chatroom', channelname=channels | length +1)}}" method="post">
+
+        <div class="form-group mt-3">
+
+            <label style="font-size:40px;" for="channelName" class="mb-1"> Create Channel </label>
+            <input type="text" id="channelName" class="form-control p-4" placeholder="Channel Name" required name="channelName">
+            <button type="submit" class="mt-1 btn btn-lg btn-primary"> Submit </button>
+
+        </div>
+
+    </form>
+
+    {% if channels %}
+        <h1> Channels:</h1>
+        <ul id="chatrooms">
+            {% for chat in channels %}
+                <li>
+                    <a href="{{ url_for('chatroom', channelname=loop.index)}}"> {{ chat }} </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+{% endblock %}

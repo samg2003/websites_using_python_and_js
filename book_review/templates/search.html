@@ -1,0 +1,49 @@
+{%extends "layout.html"%}
+{%block head%}
+
+<header>
+  <div class = "row">
+    <div class = "col-md-6">
+      <a href="/logout">logout</a>
+    </div>
+    <div class = "col-md-6">
+      <a href="/search">search</a>
+    </div>
+  </div>
+</header>
+
+{%endblock%}
+{%block body%}
+  <form action="/search" method = "post">
+    <div class="form-group">
+        <label for="bookdetail">ISBN/Authot/BookName</label>
+        <input type="text" name="bookdetail" class="form-control" id="bookdetail" aria-describedby="BookdetailHelp" placeholder="Type here">
+        <small id="BookdetailHelp" class="form-text text-muted">check the spellings</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{%if searched == 1%}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">{{count}} results</th>
+      <th scope="col">ISBN</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for row in data%}
+    <tr>
+      <th scope="row"><a href="/{{row.isbn}}">Book Page</a></th>
+      <td>{{row.isbn}}</td>
+      <td>{{row.title}}</td>
+      <td>{{row.author}}</td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
+{%endif%}
+
+{%endblock%}

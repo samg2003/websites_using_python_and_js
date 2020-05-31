@@ -1,0 +1,40 @@
+header div {
+    height: 200px;
+    background-color: orange;
+  }
+.row>div{
+    font-size: 40px;
+    text-align: center;
+  }
+
+.row>div:hover{
+    background-color: #d49013;
+  }
+header a{
+
+    position:absolute;
+    top:60px;
+  }
+section {
+    margin:200px;
+    text-align:center;
+  }
+
+p{
+  font-size: 24px;
+  color: darkblue;
+  font-weight: bold;
+}
+
+.detail{
+  font-size: 24px;
+  color: black;
+  font-weight: normal;
+}
+
+.review{
+  background-color: lightgrey;
+  border: 1px dotted black;
+  text-align: center;
+  padding: 10em;
+}

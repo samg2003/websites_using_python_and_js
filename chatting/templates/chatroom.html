@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block header %}
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+              <a class="nav-link" href="{{ url_for('channelslist') }}">Channels</a>
+          </li>
+      </ul>
+
+
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a style="color:red;" class="nav-link " href='{{ url_for('logout') }}''>Logout {{ username }}</a>
+          </li>
+      </ul>
+{% endblock %}
+
+{% block body %}
+    <script src="{{ url_for('static', filename='chatroom.js') }}"></script>
+
+    <form action="javascript:void(0);" class="mt-2" method="post">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default"> {{ username }} </span>
+            </div>
+
+            <input type="text" class="form-control" aria-label="Sizing example input" placeholder="Type message here" aria-describedby="inputGroup-sizing-default">
+            <button type="submit" class="ml-1  btn btn-primary">Send</button>
+        </div>
+    </form>
+    <ul class="my-4" id="messages"> </ul>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body%}
+
+
+
+<h1 id="index" class="text-center " > logging in for first time? </h1>
+
+
+
+<form class="form-signin" action="{{ url_for('channelslist')}}" method="post">
+
+        <div class="form-group mt-3">
+
+
+            <big><label for="username" class="mb-1"> Please enter your display name. </label></big>
+
+
+            <input type="text" id="username" class="form-control p-4" placeholder="Display Name" required name="username">
+
+
+            <button type="submit" class="mt-1 btn btn-lg btn-primary"> Enter the chat app </button>
+
+
+        </div>
+
+</form>
+
+
+{% endblock %}

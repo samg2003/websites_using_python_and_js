@@ -1,0 +1,92 @@
+{%extends "info/base.html" %}
+{% load static %}
+
+{%block title%}
+  live
+{%endblock%}
+
+{%block js%}
+
+<script type="text/javascript">
+
+document.addEventListener("DOMContentLoaded",()=>{
+  document.querySelector("#form").onsubmit = () => {
+    const request = new XMLHttpRequest();
+    const country = document.querySelector("#country").value;
+    request.open("POST", "{%url 'data'%}");
+
+    request.onload = ()=>{
+
+      const data = JSON.parse(request.responseText);
+      if (data.success) {
+                  var contents = `Country : ${data.country}`
+                  document.querySelector('#resultcou').innerHTML = contents;
+                  document.querySelector('#resultcou').style.display = 'block';
+                  contents = `Confirmed Cases : ${data.confirmed}`
+                  document.querySelector('#resultcon').innerHTML = contents;
+                  document.querySelector('#resultcon').style.display = 'block';
+                  contents = `Total Deaths : ${data.deaths}`
+                  document.querySelector('#resultdea').innerHTML = contents;
+                  document.querySelector('#resultdea').style.display = 'block';
+                  contents = `Total Recovered : ${data.recovered}`
+                  document.querySelector('#resultrec').innerHTML = contents;
+                  document.querySelector('#resultrec').style.display = 'block';
+                  contents = `Date Last Updated On : ${data.date}`
+                  document.querySelector('#resultdat').innerHTML = contents;
+                  document.querySelector('#resultdat').style.display = 'block';
+              }
+      else {
+                  document.querySelector('#resultcou').innerHTML = 'Apology! Api is currently not working please try gain in 12 minutes!.';
+      }
+
+    };
+    const data = new FormData();
+    data.append('country', country);
+
+        // Send request
+    request.send(data);
+    return false;
+  };
+});
+
+</script>
+
+
+{%endblock%}
+
+
+
+
+
+{%block body%}
+  <form id = "form" class="centre" action="{%url 'live'%}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label style = "font-size:44px;" for="country">Select Country</label>
+        <select class="form-control" id="country">
+          {% for data in countries%}
+            <option value="{{data}}">{{data}}</option>
+          {%endfor%}
+        </select>
+        <small style = "font-size:20px;" id="countryHelp" class="form-text text-muted">if your country is not listed, you country is not affected by COVID-19</small>
+    </div>
+    <button style = "font-size:20px;" type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <br>
+  <ul class="list-group">
+  <li style = "display:none;" class="list-group-item list-group-item-info" id="resultcou"></li>
+  <li style = "display:none;" class="list-group-item list-group-item-info" id="resultcon"></li>
+  <li style = "display:none;" class="list-group-item list-group-item-info" id="resultdea"></li>
+  <li style = "display:none;" class="list-group-item list-group-item-info" id="resultrec"></li>
+  <li style = "display:none;" class="list-group-item list-group-item-info" id="resultdat"></li>
+  </ul>
+  <br>
+  <ul class="list-group">
+    <li style = "font-size:24px;" class="list-group-item list-group-item-danger">Total Confirmed infected people worldwide(live): {{confirmed}}</li>
+    <li style = "font-size:24px;" class="list-group-item list-group-item-danger">Total Confirmed Death Cases worldwide(live): {{deaths}}</li>
+  </ul>
+  <div class="centre">
+    <img src="{% static 'info/map.png' %}" class = "centre" align="middle" style = "margin-top:50px;" width="700" alt="coronavirus-spread-world">
+  </div>
+
+{%endblock%}

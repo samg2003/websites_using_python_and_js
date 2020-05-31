@@ -1,0 +1,42 @@
+{% extends "info/base.html"%}
+{%block title%}
+Information
+{% endblock %}
+
+{%block body%}
+  <h1>2019- Novel Coronavirus/ COVID-19</h1>
+  <br>
+  <p>Coronavirus disease (COVID-19) is an infectious disease caused by a new virus.<br>
+The disease causes respiratory illness (like the flu) with symptoms such as a cough, fever, and in more severe cases, difficulty breathing. You can protect yourself by washing your hands frequently, avoiding touching your face, and avoiding close contact (1 meter or 3 feet) with people who are unwell.</p>
+  <br>
+  <h3>Do</h3>
+  <ul class="list-group">
+     <li class="list-group-item list-group-item-info">Wash your hands regularly for 20 seconds, with soap and water or alcohol-based hand rub</li>
+      <li class="list-group-item list-group-item-info">Cover your nose and mouth with a disposable tissue or flexed elbow when you cough or sneeze</li>
+       <li class="list-group-item list-group-item-info">Avoid close contact (1 meter or 3 feet) with people who are unwell</li>
+        <li class="list-group-item list-group-item-info">Stay home and self-isolate from others in the household if you feel unwell</li>
+  </ul>
+
+  <h3>Don't</h3>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-info">Touch your eyes, nose, or mouth if your hands are not clean</li>
+</ul>
+  <div class="centre">
+      <iframe alt = "who-video-covid-19-information-processing" width="560" height="315" src="https://www.youtube.com/embed/mOV1aBVYKGA" frameborder="2" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+
+<h2>About This Pandemic</h2>
+<br>
+<ul class="list-group">
+  <li style = "font-size:24px;" class="list-group-item list-group-item-danger">Total Confirmed Cases worldwide(live): {{total_cases}}</li>
+
+</ul>
+<a href="{%url 'live'%}">More Data On This Link</a>
+<br>
+<br>
+<p>The first influenza pandemic of the 21st century occurred in 2009–2010 and was caused by an influenza A(H1N1) virus. It was the first pandemic for which many Member States had developed comprehensive pandemic plans describing the public health measures to be taken, aimed at reducing illness and fatalities. For the first time, pandemic vaccine was developed, produced and deployed in multiple countries during the first year of the pandemic.
+While most cases of pandemic H1N1 were mild, globally it is estimated that the 2009 pandemic caused between 100 000–400 000 deaths in the first year alone. Children and young adults were disproportionately affected in comparison to seasonal influenza, which causes severe disease mainly in the elderly, persons with chronic conditions and pregnant women.</p>
+<p>The Novel Coronavirus (COVID-19) cases have been confirmed in large number of countries due to which the World Health Organisation (WHO) on 11.03.2020 has characterized COVID-19 as pandemic.</p>
+<p>Three influenza pandemics occurred at intervals of several decades during the 20th century, the most severe of which was the so-called "Spanish Flu" (caused by an A(H1N1) virus), estimated to have caused 20–50 million deaths in 1918–1919. Milder pandemics occurred subsequently in 1957–1958 (the "Asian Flu" caused by an A(H2N2) virus) and in 1968 (the "Hong Kong Flu" caused by an A(H3N2) virus), which were estimated to have caused 1–4 million deaths each. as mentioned by <a href="http://www.euro.who.int/en/health-topics/communicable-diseases/influenza/pandemic-influenza/past-pandemics">Who</a></p>
+
+{%endblock%}

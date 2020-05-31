@@ -1,0 +1,28 @@
+{% extends "orders/base.html" %}
+
+
+{% block title %}
+Shopping Cart
+{% endblock%}
+
+
+{% block body%}
+  <h1>Cart</h1>
+  <br>
+  <ul class="list-group">
+      {%for data in cart%}
+        <li class="list-group-item">{{data}}  <a href="{% url 'remove' data.id%}" >Remove Item</a></li>
+      {%endfor%}
+      {%if not cart%}
+        <li class = "list-group-item">{{total}}</li>
+      {%else%}
+      <li class = "list-group-item">Total Amount: {{total}}$</li>
+      {%endif%}
+  </ul>
+
+  <br>
+  <br>
+  <br>
+  <a href="{% url 'checkout'%}"> By clicking You confirm Your order</a>
+  <p>You will recieve order confirmation via email, payment will be after delivery</p>
+{% endblock %}

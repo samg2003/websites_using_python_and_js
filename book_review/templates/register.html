@@ -1,0 +1,39 @@
+{%extends "layout.html"%}
+{%block head%}
+
+<header>
+  <div class = "row">
+    <div class = "col-md-3">
+      <a href="/register">Register</a>
+    </div>
+    <div class = "col-md-3">
+      <a href="/login">login</a>
+    </div>
+    <div class = "col-md-3">
+      <a href="/#">logout</a>
+    </div>
+    <div class = "col-md-3">
+      <a href="/search">search</a>
+    </div>
+  </div>
+</header>
+
+{%endblock%}
+{%block body%}
+  {%if login == 0%}
+  <form action="/register" method = "post">
+  {%elif login != 0%}
+  <form action="/login" method = "post">
+  {%endif%}
+      <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" name="username" class="form-control" id="username" aria-describedby="UsernameHelp" placeholder="Username">
+          <small id="UsernameHelp" class="form-text text-muted">{{message}}</small>
+      </div>
+      <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{%endblock%}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Administrator</title>
+  </head>
+  <body>
+    <div class="">
+      <ul class="list-group">
+      {% for data in order %}
+          <li class="list-group-item">{{data}}</li>
+      {%endfor%}
+      </ul>
+    </div>
+        <a href="{% url 'administrators'%}" >Other orders</a>
+      <a href="{% url 'administratorsrem' user %}" >Complete Order</a>
+  </body>
+</html>

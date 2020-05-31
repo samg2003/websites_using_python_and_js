@@ -1,0 +1,13 @@
+body {
+  text-align:center;
+  margin: 10%;
+  background-color: lightyellow;
+}
+
+input{
+  width:100px;
+}
+
+.form-control:hover{
+  background-color:lightgrey;
+}
